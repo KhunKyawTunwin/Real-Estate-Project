@@ -1,0 +1,66 @@
+.container {
+  height: calc(100vh - 60px);
+  width: 100%;
+  background-image: url(../../assets/bg-2.jpg);
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: darken;
+}
+
+.wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper > h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  margin-bottom: 2.5rem;
+}
+
+.wrapper > h5 {
+  font-family: "serif";
+  color: #eae9e9;
+  font-size: 30px;
+  margin-bottom: 3rem;
+}
+
+.wrapper > .options {
+  width: 70%;
+  background-color: #fff;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.options > select {
+  height: 40px;
+  min-width: 150px;
+  max-width: 200px;
+  border: none;
+  border-radius: 12px;
+  padding: 0.25rem 0.75rem;
+  background-color: rgb(0, 145, 255);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.options > .searchIcon {
+  padding: 0.5rem;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgb(44, 213, 134);
+  fill: #fff;
+  cursor: pointer;
+}
