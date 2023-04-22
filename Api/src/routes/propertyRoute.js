@@ -1,5 +1,5 @@
 const express = require("express");
-const verifyToken = require("../middleware/verifyToken");
+// const verifyToken = require("../middleware/verifyToken");
 
 const propetyContoller = require("../controllers/propertyController");
 const uploadController = require("../controllers/uploadController");
@@ -10,9 +10,9 @@ router.post("/", propetyContoller.postCreateProperty);
 
 router
   .route("/:id")
-  .put(verifyToken, propetyContoller.updateProperty)
+  .put(propetyContoller.updateProperty)
 
-  .delete(verifyToken, propetyContoller.deleteProperty);
+  .delete(propetyContoller.deleteProperty);
 
 router.get("/getAll", propetyContoller.getAllProperties);
 

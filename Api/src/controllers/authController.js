@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 exports.postRegister = async (req, res) => {
   try {
-    const isExit = await User.findOne({ emai: req.body.email });
+    const isExit = await User.findOne({ email: req.body.email });
 
     if (isExit) {
       throw new Error("Email is already registered!");

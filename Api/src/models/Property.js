@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const propertySchema = mongoose.Schema(
+const propertySchema = new mongoose.Schema(
   {
     currentOwner: {
       type: mongoose.Types.ObjectId,
@@ -33,7 +33,7 @@ const propertySchema = mongoose.Schema(
 
     price: {
       type: Number,
-      requid: true,
+      requiredd: true,
     },
 
     sqmeters: {

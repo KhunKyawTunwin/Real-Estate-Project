@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./featuredInvestment.module.css";
 import { request } from "../../../util/fetchApi";
+import { Link } from "react-router-dom";
 
 const FeaturedInvestment = () => {
   const [featuredInvestments, setFeaturedInvestments] = useState([]);
@@ -25,7 +26,16 @@ const FeaturedInvestment = () => {
           <h2>Our Featured Properties</h2>
         </div>
 
-        <div className={classes.featuredProperties}></div>
+        <div className={classes.featuredProperties}>
+          {featuredInvestments?.map((property) => (
+            <div key={property._id} className={classes.featuredProperty}>
+              <Link
+                to={`/propertyDetail/${property._id}`}
+                className={classes.imgContainer}
+              ></Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
