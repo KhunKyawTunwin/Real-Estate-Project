@@ -1,7 +1,6 @@
 const Property = require("../models/Property");
 
 // Create Property
-
 exports.postCreateProperty = async (req, res) => {
   try {
     const newProperty = await Property.create({
@@ -20,6 +19,7 @@ exports.postCreateProperty = async (req, res) => {
 exports.updateProperty = async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
+
     if (property.currentOwner !== req.user.id) {
       throw new Error(`You're not allowed to update othe people Porperties !`);
     } else {
@@ -51,6 +51,7 @@ exports.deleteProperty = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+/*
 
 // Get all
 exports.getAllProperties = async (req, res) => {
@@ -101,20 +102,20 @@ exports.getPropertyTypes = async (req, res) => {
 
 exports.getPropertyCount = async (req, res) => {
   try {
-    const realEstateType = await Property.countDocuments({
-      type: "realEstate",
+    const beachType = await Property.countDocuments({
+      type: "beach",
     });
-    const itTechonologyType = await Property.countDocuments({
-      type: "itTechnology ",
+    const mountainType = await Property.countDocuments({
+      type: "mountai ",
     });
-    const medicalType = await Property.countDocuments({
-      type: "healthMedical",
+    const villageType = await Property.countDocuments({
+      type: "villageT",
     });
 
     return res.status(200).json({
-      realEstate: realEstateType,
-      itTechonology: itTechonologyType,
-      healthMedical: medicalType,
+      beach: beachType,
+      mountain: mountainType,
+      village: VirtualType,
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -139,3 +140,5 @@ exports.getIndividualProperty = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+
+*/

@@ -2,64 +2,40 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const bodyParser = require("body-parser");
-const authUsersRoute = require("./src/routes/authRoute");
-const propertyRoute = require("./src/routes/propertyRoute");
-const imageUploadRoute = require("./src/controllers/uploadController");
-const verifyToken = require("./src/middleware/verifyToken");
+//  const bodyParser = require("body-parser");
+
+const authUsersRoute = require("./routes/authRoute");
+
+const propertyRoute = require("./routes/propertyRoute");
+// const imageUploadRoute = require("./controllers/uploadController");
+// const verifyToken = require("./middleware/verifyToken");
 
 require("dotenv").config();
 
 const app = express();
 
-// MongoDB Connect
-
-const connect = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to MongoDB!");
-    app.listen(process.env.PORT || 8080, () => {
-      connect();
-      console.log(
-        `Local Server Start running at Port : http://localhost:${process.env.PORT}`
-      );
-    });
-  } catch (error) {
-    throw error;
-  }
-};
-// mongoose.connection.on("disconnected", () => {
-//   console.log("mongoDB Disconnected!");
-// });
-// mongoose.connection.on("connected", () => {
-//   console.log("mongoDB connected!");
-// });
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+});
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to Mongoose"));
 
 // middlewares & Routes
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use("/auth", verifyToken, authUsersRoute);
-
+app.use("/auth", authUsersRoute);
+//
 app.use("/property", propertyRoute);
-
-app.use("/upload", imageUploadRoute);
+//
+// app.use("/upload", imageUploadRoute);
 
 // Server Listening and Port
 
-// app.use((err, req, res, next) => {
-//   const errorStatus = err.status || 500;
-
-//   const errorMessage = err.message ||
-
-// "Something went wrong!";
-
-//
-//   return res.status(errorStatus).json({
-//     success: false,
-//     status: errorStatus,
-//     message: errorMessage,
-//     stack: err.stack,
-//   });
-// });
+app.listen(process.env.PORT || 8080, () => {
+  console.log(
+    `Local Server Start running at Port : http://localhost:${process.env.PORT}`
+  );
+});

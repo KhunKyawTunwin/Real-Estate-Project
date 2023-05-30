@@ -1,4 +1,4 @@
-const multer = require("multer");
+/* const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -21,3 +21,4 @@ exports.postImageUpload =
       console.log(error);
     }
   });
+ */
